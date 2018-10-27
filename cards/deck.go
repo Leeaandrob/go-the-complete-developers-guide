@@ -6,6 +6,7 @@ import "fmt"
 // which is a slice of strings
 type deck []string
 
+// func receiver
 func (d deck) print() {
 	// lopping and print the el of the cards
 	for i, card := range d {
