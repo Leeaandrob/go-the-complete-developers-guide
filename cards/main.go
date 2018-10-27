@@ -6,7 +6,7 @@ func main() {
 	//var card string = "Ace of Spades"
 
 	// creating a new slice
-	cards := []string{newCard(), newCard()}
+	cards := deck{newCard(), newCard()}
 
 	// adding el to cards
 	cards = append(cards, newCard())
@@ -15,10 +15,7 @@ func main() {
 	// print the el of the cards
 	fmt.Println(cards)
 
-	// lopping and print the el of the cards
-	for i, card := range cards {
-		fmt.Println(i, card)
-	}
+	cards.print()
 
 }
 
