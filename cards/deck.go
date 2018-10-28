@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // Create a new type of 'deck'
 // which is a slice of strings
 type deck []string
 
+// creating a instance of deck
 func newDeck() deck {
 	cards := deck{}
 	cardSuits := []string{"Spades", "Hearts", "Diamonds", "Clubs"}
@@ -31,6 +35,12 @@ func (d deck) print() {
 	}
 }
 
+// doing a slice on deck
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// converting a deck into string separating using comma
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
 }
