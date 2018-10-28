@@ -9,6 +9,7 @@ func main() {
 	// using func print of deck
 	cards.print()
 
+	// deal will do a split inside deck slice
 	hand, remainingCards := deal(cards, 5)
 
 	hand.print()
