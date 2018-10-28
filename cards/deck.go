@@ -26,6 +26,8 @@ func (d deck) print() {
 	// lopping and print the el of the cards
 	for i, card := range d {
 		fmt.Println(i, card)
+		// print []byte of card
+		// fmt.Println([]byte(card))
 	}
 }
 
