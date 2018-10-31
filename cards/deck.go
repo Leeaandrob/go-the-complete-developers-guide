@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -52,6 +53,7 @@ func (d deck) saveToFile(filename string) error {
 	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
 
+// reading file and create a new deck from file opened
 func newDeckFromFile(filename string) deck {
 	bs, err := ioutil.ReadFile(filename)
 
@@ -63,4 +65,13 @@ func newDeckFromFile(filename string) deck {
 
 	s := strings.Split(string(bs), ",")
 	return deck(s)
+}
+
+// will random a number and get the position of deck using the random number
+func (d deck) shuffle() {
+	for index := range d {
+		newPosition := rand.Intn(len(d) - 1)
+
+		d[index], d[newPosition] = d[newPosition], d[index]
+	}
 }
