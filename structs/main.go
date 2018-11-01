@@ -2,13 +2,19 @@ package main
 
 import "fmt"
 
+type contactInfo struct {
+	email   string
+	zipCode int
+}
+
 type person struct {
 	firstName string
 	lastName  string
+	contact   contactInfo
 }
 
-func newPerson(firstName string, lastName string) person {
-	return person{firstName: firstName, lastName: lastName}
+func newPerson(firstName string, lastName string, email string, zipCode int) person {
+	return person{firstName: firstName, lastName: lastName, contact: contactInfo{email: email, zipCode: zipCode}}
 }
 
 func updatePerson(p person, firstName string, lastName string) person {
@@ -29,9 +35,14 @@ func (p *person) printFullName() {
 	fmt.Println(p.firstName + " " + p.lastName)
 }
 
+func (p *person) printFullInfo() {
+	fmt.Printf("%+v\n", p)
+}
+
 func main() {
-	person2 := newPerson("Bar", "Foo")
+	person2 := newPerson("Bar", "Foo", "bar@foo.com", 2275300)
 	person2.printFullName()
 	person2 = updatePerson(person2, "Barr", "Fooo")
 	person2.printFullName()
+	person2.printFullInfo()
 }
