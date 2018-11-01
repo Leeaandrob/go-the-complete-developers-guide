@@ -17,32 +17,30 @@ func newPerson(firstName string, lastName string, email string, zipCode int) per
 	return person{firstName: firstName, lastName: lastName, contact: contactInfo{email: email, zipCode: zipCode}}
 }
 
-func updatePerson(p person, firstName string, lastName string) person {
-	p.firstName = firstName
-	p.lastName = lastName
-	return p
+func (p *person) updateFirstName(newFirstName string) {
+	(*p).firstName = newFirstName
 }
 
 func (p *person) printFirstName() {
-	fmt.Println(p.firstName)
+	fmt.Println((*p).firstName)
 }
 
 func (p *person) printLastName() {
-	fmt.Println(p.lastName)
+	fmt.Println((*p).lastName)
 }
 
 func (p *person) printFullName() {
-	fmt.Println(p.firstName + " " + p.lastName)
+	fmt.Println((*p).firstName + " " + p.lastName)
 }
 
 func (p *person) printFullInfo() {
-	fmt.Printf("%+v\n", p)
+	fmt.Printf("%+v\n", (*p))
 }
 
 func main() {
 	person2 := newPerson("Bar", "Foo", "bar@foo.com", 2275300)
-	person2.printFullName()
-	person2 = updatePerson(person2, "Barr", "Fooo")
+	person2Pointer := &person2
+	person2Pointer.updateFirstName("Baz")
 	person2.printFullName()
 	person2.printFullInfo()
 }
