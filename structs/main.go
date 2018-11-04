@@ -17,8 +17,9 @@ func newPerson(firstName string, lastName string, email string, zipCode int) per
 	return person{firstName: firstName, lastName: lastName, contact: contactInfo{email: email, zipCode: zipCode}}
 }
 
-func (p *person) updateFirstName(newFirstName string) {
-	(*p).firstName = newFirstName
+func (p person) updateFirstName(newFirstName string) {
+	// give the value this memory address is pointing at
+	p.firstName = newFirstName
 }
 
 func (p *person) printFirstName() {
@@ -33,14 +34,13 @@ func (p *person) printFullName() {
 	fmt.Println((*p).firstName + " " + p.lastName)
 }
 
-func (p *person) printFullInfo() {
-	fmt.Printf("%+v\n", (*p))
+func (p person) printFullInfo() {
+	fmt.Printf("%+v\n", p)
 }
 
 func main() {
 	person2 := newPerson("Bar", "Foo", "bar@foo.com", 2275300)
-	person2Pointer := &person2
-	person2Pointer.updateFirstName("Baz")
+	person2.updateFirstName("Baz")
 	person2.printFullName()
 	person2.printFullInfo()
 }
